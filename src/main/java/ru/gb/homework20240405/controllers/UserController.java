@@ -25,4 +25,13 @@ public class UserController {
         service.getDataProcessingService().getRepository().getUsers().add(user);
         return "User added from body!";
     }
+
+    @PostMapping("/parameters")
+    public String userAddFromParam(
+            @RequestParam String name,
+            @RequestParam int age,
+            @RequestParam String email) {
+        service.processRegistration(name, age, email);
+        return "User added from parameters!";
+    }
 }
