@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class UserRepository {
+public class ListUserRepository {
     private List<User> users = new ArrayList<>();
 
     public List<User> getUsers() {

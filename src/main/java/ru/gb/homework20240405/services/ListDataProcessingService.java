@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.gb.homework20240405.domain.User;
 import ru.gb.homework20240405.interfaces.DataProcessingService;
-import ru.gb.homework20240405.repository.UserRepository;
+import ru.gb.homework20240405.repository.ListUserRepository;
 
 import java.util.Comparator;
 import java.util.List;
@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 public class ListDataProcessingService implements DataProcessingService {
 
     @Autowired
-    private UserRepository repository;
+    private ListUserRepository repository;
 
     @Override
     public List<User> getAll() {
