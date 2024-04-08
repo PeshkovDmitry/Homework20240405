@@ -3,6 +3,9 @@ package ru.gb.homework20240405.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.gb.homework20240405.domain.User;
+import ru.gb.homework20240405.interfaces.DataProcessingService;
+
+import java.util.List;
 
 @Service
 public class RegistrationService {
@@ -16,13 +19,18 @@ public class RegistrationService {
     @Autowired
     private NotificationService notificationService;
 
-    public DataProcessingService getDataProcessingService() {
-        return dataProcessingService;
+    public List<User> getAllUsers() {
+        return dataProcessingService.getAll();
+    }
+
+    public void processRegistration(User user) {
+        dataProcessingService.addUserToList(user);
+        notificationService.notifyUser(user);
     }
 
     public void processRegistration(String name, int age, String email) {
-        User user = userService.createUser(name, age, email);
-        dataProcessingService.addUserToList(user);
-        notificationService.notifyUser(user);
+        processRegistration(
+                userService.createUser(name, age, email)
+        );
     }
 }

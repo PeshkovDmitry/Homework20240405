@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.gb.homework20240405.domain.User;
-import ru.gb.homework20240405.services.DataProcessingService;
+import ru.gb.homework20240405.interfaces.DataProcessingService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,19 +31,18 @@ public class TaskController {
     @GetMapping("/sort")//localhost:8080/tasks/sort
     public List<User> sortUsersByAge()
     {
-        return service.sortUsersByAge(service.getRepository().getUsers());
+        return service.sortUsersByAge();
     }
 
     @GetMapping("/filter/{age}")
     public List<User> filterUsersByAge(@PathVariable int age)
     {
-        System.out.println(age);
-        return service.filterUsersByAge(service.getRepository().getUsers(), age);
+        return service.filterUsersByAge(age);
     }
 
     @GetMapping("/calc")
     public double  calculateAverageAge() {
-        return  service.calculateAverageAge(service.getRepository().getUsers());
+        return  service.calculateAverageAge();
     }
 
 }

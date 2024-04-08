@@ -16,13 +16,13 @@ public class UserController {
 
     @GetMapping
     public List<User> userList() {
-        return service.getDataProcessingService().getRepository().getUsers();
+        return service.getAllUsers();
     }
 
     @PostMapping("/body")
     public String userAddFromBody(@RequestBody User user)
     {
-        service.getDataProcessingService().getRepository().getUsers().add(user);
+        service.processRegistration(user);
         return "User added from body!";
     }
 
