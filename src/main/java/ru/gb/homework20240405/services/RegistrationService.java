@@ -2,18 +2,27 @@ package ru.gb.homework20240405.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.gb.homework20240405.domain.User;
 
 @Service
 public class RegistrationService {
+
+    @Autowired
+    private DataProcessingService dataProcessingService;
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private NotificationService notificationService;
 
     public DataProcessingService getDataProcessingService() {
         return dataProcessingService;
     }
 
-    @Autowired
-    private DataProcessingService dataProcessingService;
-
-    //Поля UserService, NotificationService
-
-    //Метод processRegistration
+    public void processRegistration(String name, int age, String email) {
+        User user = userService.createUser(name, age, email);
+        dataProcessingService.addUserToList(user);
+        notificationService.notifyUser(user);
+    }
 }

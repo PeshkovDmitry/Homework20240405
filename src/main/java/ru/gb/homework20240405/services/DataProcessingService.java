@@ -25,11 +25,6 @@ public class DataProcessingService {
     }
 
     public List<User> sortUsersByAge(List<User> users) {
-
-//        return repository.getUsers().stream().sorted(Comparator.comparing(User::getAge))
-//                .collect(Collectors.toList());
-
-
         return users.stream()
                 .sorted(Comparator.comparing(User::getAge))
                 .collect(Collectors.toList());
